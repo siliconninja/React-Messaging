@@ -146,7 +146,7 @@ const Header = () => {
                                     __typename: prev.messages.__typename
                                 }
                             })
-                       }
+                        }
                    })
                }} />
             </tbody>
