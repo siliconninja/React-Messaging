@@ -142,7 +142,7 @@ const Header = () => {
                             // "The return value of this function *completely replaces* the current cached result for the query." - https://www.apollographql.com/docs/react/data/subscriptions/
                             return Object.assign({}, prev, {
                                 messages: {
-                                    nodes: [newMessage, ...prev.messages.nodes],
+                                    nodes: [...prev.messages.nodes, newMessage],
                                     __typename: prev.messages.__typename
                                 }
                             })
