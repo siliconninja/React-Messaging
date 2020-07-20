@@ -1,29 +1,29 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import React from "react"
+import { useQuery } from "@apollo/react-hooks"
+import { gql } from "apollo-boost"
 
 const EXCHANGE_RATES = gql`
-{
-    messages {
-      nodes {
-        nodeId
-        id
-        email
-        message
-      }
+    {
+        messages {
+            nodes {
+                nodeId
+                id
+                email
+                message
+            }
+        }
     }
-}
-`;
+`
 
 function Test() {
-  const { loading, error, data } = useQuery(EXCHANGE_RATES);
+    const { loading, error, data } = useQuery(EXCHANGE_RATES)
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+    if (loading) return <p>Loading...</p>
+    if (error) return <p>Error :(</p>
 
     console.log(data)
 
-  return ( <p>Done</p> );
+    return <p>Done</p>
 }
 
-export default Test;
+export default Test
