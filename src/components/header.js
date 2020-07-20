@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useEffect } from "react"
 
 // React-Bootstrap imports
 import Button from 'react-bootstrap/Button';
@@ -108,8 +108,7 @@ const Header = () => {
   // const {data, loading} = useSubscription(getMessagesSubscription, {onSubscriptionData: onNewMessage});
 
   const {loading, error, subscribeToMore, ...data} = useQuery(getMessagesQuery);
-
-  const subscriptionDataAndInfo = useSubscription(getMessagesSubscription);
+//   const subscriptionDataAndInfo = useSubscription(getMessagesSubscription);
 
   // this helped explain what loading and error are: https://www.youtube.com/watch?v=8uU6IHMBDao
   // (and this does too: https://www.apollographql.com/docs/react/data/queries/#executing-a-query)
