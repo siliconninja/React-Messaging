@@ -107,9 +107,7 @@ const Header = () => {
   // it's a const because data is ONLY fetched AT THE TIME OF *CREATING (and updating)* THE (Header) COMPONENT
   // const {data, loading} = useSubscription(getMessagesSubscription, {onSubscriptionData: onNewMessage});
 
-  const obj = useQuery(getMessagesQuery);
-  const data2 = obj.data; // example without using destructuring directly
-  const {loading, error, subscribeToMore} = obj; // https://wesbos.com/destructuring-objects
+  const {loading, error, subscribeToMore, ...data} = useQuery(getMessagesQuery);
 
   const subscriptionDataAndInfo = useSubscription(getMessagesSubscription);
 
@@ -130,7 +128,7 @@ const Header = () => {
               </tr>
             </thead>
             <tbody>
-               <MessageList data={data2} test="this@should.not.be.a.bunch.of.props.in.a.list" onNewMsgFunc={() => {
+               <MessageList {...data} test="this@should.not.be.a.bunch.of.props.in.a.list" onNewMsgFunc={() => {
                    subscribeToMore({
                        document: getMessagesSubscription,
                        updateQuery: (prev, { subscriptionData }) => {
