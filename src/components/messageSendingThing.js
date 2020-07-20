@@ -95,7 +95,7 @@ const MessageSendingThing = () => {
                 <Form.Control type="text" placeholder="Message" name="message" onChange={handleChange} />
               </Form.Group>
               <Button variant="primary" type="submit">
-                Submit
+                Send
               </Button>
             </Form>
           </Row>
