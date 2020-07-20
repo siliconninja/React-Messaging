@@ -91,7 +91,9 @@ subscription {
         id
         email
         message
+        __typename
       }
+      __typename
     }
   }
 }`;
@@ -136,14 +138,14 @@ const Header = () => {
                            console.log(subscriptionData)
 
                             if(!subscriptionData.data) return prev;
-                            const newMessage = subscriptionData.data.listen;
-                            console.log(subscriptionData.data.listen)
+                            const newMessage = subscriptionData.data.listen.relatedNode;
                             console.log(prev.messages.nodes)
                             // copy the new message to the INTERNAL DATA OBJECT stored inside the component to show it. (Apollo docs say it does this by refreshing its cached version)
                             // "The return value of this function *completely replaces* the current cached result for the query." - https://www.apollographql.com/docs/react/data/subscriptions/
                             return Object.assign({}, prev, {
                                 messages: {
-                                    nodes: [newMessage, ...prev.messages.nodes]
+                                    nodes: [newMessage, ...prev.messages.nodes],
+                                    __typename: prev.messages.__typename
                                 }
                             })
                        }
