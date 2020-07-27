@@ -35,6 +35,9 @@ import { useSubscription, useQuery } from "@apollo/react-hooks"
 
 import { Component } from "react"
 
+import { Link } from "gatsby"
+import { getUser, isLoggedIn } from "../services/auth"
+
 // https://www.apollographql.com/docs/react/data/subscriptions/#client-setup
 const httpLink = createHttpLink({ uri: "http://localhost:5000/graphql" })
 
@@ -75,18 +78,38 @@ const apClient = new ApolloClient({
 // }
 // `}).then(result => console.log(result))
 
-const IndexPage = () => {
-    // should only have access to GATSBY_* variables, not the whole process.env so just getting {} is expected
-    // console.log(process.env)
+// const IndexPage = () => {
+//     // should only have access to GATSBY_* variables, not the whole process.env so just getting {} is expected
+//     // console.log(process.env)
 
+//     return (
+//         <>
+//             <ApolloProvider client={apClient}>
+//                 <Header />
+//                 <MessageSendingThing />
+//             </ApolloProvider>
+//         </>
+//     )
+// }
+
+
+export default function Home() {
     return (
         <>
-            <ApolloProvider client={apClient}>
-                <Header />
-                <MessageSendingThing />
-            </ApolloProvider>
-        </>
+        <h1>Hello {isLoggedIn() ? getUser().name : "world"}!</h1>
+        <p>
+          {isLoggedIn() ? (
+            <>
+              You are logged in, so check your{" "}
+              <Link to="/app/profile">profile</Link>
+            </>
+          ) : (
+            <>
+              You should <Link to="/app/login">log in</Link> to see restricted
+              content
+            </>
+          )}
+        </p>
+      </>
     )
-}
-
-export default IndexPage
+}  
